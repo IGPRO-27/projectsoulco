@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+        <template id="project_soulco_report_saleorder_quotation_inherit" inherit_id="sale.report_saleorder_document">
+            <!-- <xpath expr="//div[@class='table table-condensed']/thead/tr/" position="after">
+                    <th>Numéro de série</th>
+            </xpath> -->
+            <xpath expr="//tbody[@class='sale_tbody']/tr" position="after">
+                <td>
+                   <span t-field="l.product_id.num_serie"/>
+                </td>
+            </xpath>
+        </template>
+
+    </data>
+</openerp>

@@ -22,15 +22,8 @@
 
     # always loaded
     'data': [
-        # 'security/security.xml',
-        # 'security/ir.model.access.csv',
-        # 'views/templates.xml',
-        # 'views/session_workflow.xml',
-        # 'views/openacademy.xml',
-        # 'views/partner.xml',
-        # 'views/session_board.xml',
         'project_soulco.xml',
-
+        'project_soulco_report.xml',
     ],
     # only loaded in demonstration mode
     # 'demo': [
