@@ -3,32 +3,28 @@
 from openerp import models, fields, api, exceptions
 
 class projectsoulco(models.Model):
-    _inherit = 'product.product'
+    _inherit = 'product.template'
 
     num_serie = fields.Char(string ="Numéro de Série")
+    _sql_constraints=[('num_serie','unique(num_serie)',"Num serie must be unique")]
 
+
+class projectsoulcoproduct(models.Model):
+    _inherit = 'product.product'
     ean13 = fields.Char(string ="Réference S" ,  required=True)
     default_code = fields.Char(string ="Réference L" ,  required=True)
-
-    _sql_constraints=[('num_serie','unique(num_serie)',"Num serie must be unique")]
 
     def _check_ean_key(self, cr, uid, ids, context=None):
         return True
 
     _constraints = [(_check_ean_key, 'override function', ['ean13'])]
 
+    # def _check_ean_key(self, cr, uid, ids, context=None):
+    #     return True
+
+    # _constraints = [(_check_ean_key, 'override function', ['ean13'])]
 
 
-
-# class projectsoulcoproduct(models.Model):
-#     _inherit = 'product.product'
-#
-#     def _check_ean_key(self, cr, uid, ids, context=None):
-#         return True
-#
-#     _constraints = [(_check_ean_key, 'override function', ['ean13'])]
-#
-#
 
 
 
