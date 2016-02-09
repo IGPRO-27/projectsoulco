@@ -8,15 +8,28 @@
       <field name="inherit_id" ref="product.product_template_only_form_view" />
       <field name="arch" type="xml">
         <xpath expr="//field[@name='default_code']" position="after">
-    	  <field name="num_serie" attrs="{'invisible': [('product_variant_count', '&gt;', 1)]}"/>
+    	  <field name="num_serie"/>
     	</xpath>
 	<xpath expr="//field[@name='default_code']" position="replace">
-    	  <field name="default_code" string="Reference L" attrs="{'invisible': [('product_variant_count', '&gt;', 1)]}"/>
+    	  <field name="default_code" string="Reference L" />
     	</xpath>
 	<xpath expr="//field[@name='ean13']" position="replace">
-    	  <field name="ean13" string="Reference S" attrs="{'invisible': [('product_variant_count', '&gt;', 1)]}"/>
+    	  <field name="ean13" string="Reference S" />
     	</xpath>
       </field>
+    </record>
+
+    <record model="ir.ui.view" id="sale_view_order_form_custum">
+      <field name="name">sale.view.order.form.custum</field>
+      <field name="model">sale.order</field>
+      <field name="inherit_id" ref="sale.view_order_form" />
+      <field name="arch" type="xml">
+        <xpath expr="//tree[@string='Sales Order Lines']" position="inside">
+    	  <!-- <field name="order_line.product_id.num_serie" /> -->
+	  <!-- <field name="order_line.product_id.default_code" string="Reference L"/> -->
+	  <field name="product_id" string="Reference S" />
+	</xpath>
+     </field>
     </record>
 
   </data>
