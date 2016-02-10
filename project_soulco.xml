@@ -1,59 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
-  <data>
+    <data>
 
-    <record model="ir.ui.view" id="product_template_custom_form_view">
-      <field name="name">product.template.custom.form.view</field>
-      <field name="model">product.template</field>
-      <field name="inherit_id" ref="product.product_template_only_form_view" />
-      <field name="arch" type="xml">
-        <xpath expr="//field[@name='default_code']" position="after">
-    	  <field name="num_serie"/>
-    	</xpath>
-	<xpath expr="//field[@name='default_code']" position="replace">
-    	  <field name="default_code" string="Reference L" />
-    	</xpath>
-	<xpath expr="//field[@name='ean13']" position="replace">
-    	  <field name="ean13" string="Reference S" />
-    	</xpath>
-      </field>
-    </record>
+        <record model="ir.ui.view" id="product_template_custom_form_view">
+            <field name="name">product.template.custom.form.view</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_only_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='default_code']" position="after">
+                    <field name="num_serie"/>
+                </xpath>
+                <xpath expr="//field[@name='default_code']" position="replace">
+                    <field name="default_code" string="Reference L"/>
+                </xpath>
+                <xpath expr="//field[@name='ean13']" position="replace">
+                    <field name="ean13" string="Reference S"/>
+                </xpath>
+            </field>
+        </record>
 
-    <record model="ir.ui.view" id="sale_view_order_form_custum">
-      <field name="name">sale.view.order.form.custum</field>
-      <field name="model">sale.order</field>
-      <field name="inherit_id" ref="sale.view_order_form" />
-      <field name="arch" type="xml">
-        <xpath expr="//tree[@string='Sales Order Lines']" position="inside">
-    	  <!-- <field name="order_line.product_id.num_serie" /> -->
-	  <!-- <field name="order_line.product_id.default_code" string="Reference L"/> -->
-	  <field name="product_id" string="Reference S" />
-	</xpath>
-     </field>
-    </record>
+        <record model="ir.ui.view" id="sale_view_order_form_custum">
+            <field name="name">sale.view.order.form.custum</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//tree[@string='Sales Order Lines']" position="inside">
+                    <!-- <field name="product_id.num_serie"/>
+                    <field name="product_id.default_code" string="Reference L"/>
+                    <field name="product_id" string="Reference S" /> -->
+                </xpath>
+            </field>
+        </record>
 
-  </data>
+    </data>
 </openerp>
-
-
-    <!-- <record model="ir.ui.view" id="hr_timesheet_project_work"> -->
-    <!--     <field name="name">hr.timesheet.project.form</field> -->
-    <!--     <field name="model">hr.analytic.timesheet</field> -->
-    <!--     <field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_tree" /> -->
-    <!--     <field name="arch" type="xml"> -->
-    <!--       <xpath expr="//field[@name='user_id']" position="after"> -->
-    <!-- 	    <field name="work_ids" groups="project.group_tasks_work_on_tasks"/> -->
-    <!-- 	    </xpath> -->
-    <!--     </field> -->
-    <!-- </record> -->
-
-    <!-- <record model="ir.ui.view" id="timesheet_project_work"> -->
-    <!--     <field name="name">hr.timesheet.sheet.project.form</field> -->
-    <!--     <field name="model">hr_timesheet_sheet.sheet</field> -->
-    <!--     <field name="inherit_id" ref="hr_timesheet_sheet.hr_timesheet_sheet_form" /> -->
-    <!--     <field name="arch" type="xml"> -->
-    <!--       <xpath expr="//field[@name='date']" position="after"> -->
-    <!-- 	    <field name="work_ids" string="Work" groups="project.group_tasks_work_on_tasks" /> -->
-    <!-- 	     </xpath> -->
-    <!--     </field> -->
-    <!-- </record> -->

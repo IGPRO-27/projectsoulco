@@ -2,10 +2,10 @@
 {
     'name': "Projet Soulco",
 
-    'summary': """Design Odoo for Soulco Client""",
+    'summary': """Projet erp-Soulco""",
 
     'description': """
-        Link Tasks to projects:
+        Custom modules : Sale, Purchase
     """,
 
     'author': "IGPRO",
