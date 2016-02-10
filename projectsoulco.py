@@ -2,15 +2,13 @@
 #from datetime import timedelta
 from openerp import models, fields, api, exceptions
 
-class projectsoulco(models.Model):
+class ProjectSoulcoTemplate(models.Model):
     _inherit = 'product.template'
-
-    Numserie = fields.Char(string ="Numéro de Série" ,  required=True)
 
     ean13 = fields.Char(string ="Réference S" ,  required=True)
     default_code = fields.Char(string ="Réference L" ,  required=True)
 
-class projectsoulcoproduct(models.Model):
+class ProjectSoulcoProduct(models.Model):
     _inherit = 'product.product'
 
     def _check_ean_key(self, cr, uid, ids, context=None):

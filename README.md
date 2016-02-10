@@ -1,1 +1,1 @@
-# projectsoulco
+# Project Soulco
