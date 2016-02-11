@@ -19,7 +19,7 @@
 
     # always loaded
     'data': [
-        # 'project_soulco.xml',
+        'project_soulco_view.xml',
     ],
     # only loaded in demonstration mode
     # 'demo': [

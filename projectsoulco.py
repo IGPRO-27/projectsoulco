@@ -7,6 +7,7 @@ class ProjectSoulcoTemplate(models.Model):
 
     ean13 = fields.Char(string ="Réference S" ,  required=True)
     default_code = fields.Char(string ="Réference L" ,  required=True)
+    num_serie = fields.Boolean(string="Seriable")
 
 class ProjectSoulcoProduct(models.Model):
     _inherit = 'product.product'
@@ -16,29 +17,16 @@ class ProjectSoulcoProduct(models.Model):
 
     _constraints = [(_check_ean_key, 'override function', ['ean13'])]
 
+class ProjectSoulcoStock(models.Model):
+    _inherit = 'stock.transfer_details_items'
 
+    #quantity = fields.Float(string ="Quantity")
 
-
-
-
-
-
-
-
-
-
-
-    # user_id = fields.Many2one('res.users', 'user', required=True)
-    # sheet_id =  fields.Many2one("hr_timesheet_sheet.sheet", string="Sheets", required=True)
-    #
-    # Task_ids = fields.Many2one("project.task", string="Tache", required=True)
-    # hour = fields.Float(string="Time Spent" , required=True)
-    # work_ids =  fields.Many2one("project.task.work", string="Works")
-
-    # def create(self,cr, uid, context=None, user_id)
-
-    # if context is None:context ={}
-    # model_name=context.get('active_model')
-    #     emp_obj = self.pool.get('hr.employee')
-    #     emp_id = emp_obj.search(cr, uid, [('user_id', '=', user_id)])
-        # print "L'UTILISATEUR EST %s " %(emp_id.name)
+    # @api.one
+    # @api.constrains('quantity')
+    # def _check_quantity(self):
+    #     if self.product_id.track_all == True:
+    #         print "PASSSSEEE TRACKKKKKKKKKKKKKKKKK"
+    #         if self.quantity > 1:
+    #             print "PASSSSSEEE QUANTITTTTTYYYYY"
+    #             raise ValidationError("Quantity must be one")
