@@ -3,6 +3,7 @@ from openerp import models, fields, api, exceptions
 from openerp.tools.translate import _
 import openerp.addons.decimal_precision as dp
 from datetime import datetime
+from openerp.tools.float_utils import float_compare, float_round
 import logging
 _logger = logging.getLogger(__name__)
 
@@ -96,8 +97,9 @@ class stock_transfer_details(models.TransientModel):
                     pack_datas['picking_id'] = self.picking_id.id
                     packop_id = self.env['stock.pack.operation'].create(pack_datas)
                     processed_ids.append(packop_id.id)
-        # Delete the others
+
         packops = self.env['stock.pack.operation'].search(['&', ('picking_id', '=', self.picking_id.id), '!', ('id', 'in', processed_ids)])
+        # print "Let's talk about %s" %  packops.
         packops.unlink()
         self.picking_id.do_transfer()
 
@@ -135,11 +137,14 @@ class ProjectSoulcoPicking(models.Model):
                         continue
                     elif move.state == 'draft':
                         toassign_move_ids.append(move.id)
+
                     if float_compare(remaining_qty, 0,  precision_rounding = move.product_id.uom_id.rounding) == 0:
                         if move.state in ('draft', 'assigned', 'confirmed'):
                             todo_move_ids.append(move.id)
+
                     elif float_compare(remaining_qty,0, precision_rounding = move.product_id.uom_id.rounding) > 0 and \
-                                float_compare(remaining_qty, move.product_qty, precision_rounding = move.product_id.uom_id.rounding) < 0:
+                         float_compare(remaining_qty, move.product_qty, precision_rounding = move.product_id.uom_id.rounding) < 0:
+                        print "I AAAAAAAAAAAAAAAAAAMMMMMMMMMMMM HERRRRRRRRRRRRRE"
                         new_move = stock_move_obj.split(cr, uid, move, remaining_qty, context=context)
                         todo_move_ids.append(move.id)
                         #Assign move as it was assigned before
